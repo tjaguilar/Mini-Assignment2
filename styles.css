@@ -1,0 +1,741 @@
+/* =========================================================
+   PIXEL QUEST — EXTERNAL STYLESHEET
+   Comments describe each group of rules and design choices.
+   ========================================================= */
+
+/* Define the light theme's reusable colors, spacing, and typography. */
+:root {
+  color-scheme: light;
+  --page-bg: #f6f7fb;
+  --surface: #ffffff;
+  --surface-soft: #edf0f8;
+  --text: #172033;
+  --text-muted: #4a556d;
+  --border: #d2d8e6;
+  --accent: #5b2bd5;
+  --accent-hover: #4316ad;
+  --accent-soft: #e9e1ff;
+  --highlight: #007d78;
+  --shadow: 0 18px 50px rgba(22, 28, 50, 0.09);
+  --radius: 18px;
+  --font-main: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* The dark class is toggled by the student's JavaScript implementation. */
+body.dark-mode {
+  color-scheme: dark;
+  --page-bg: #10111b;
+  --surface: #191b2a;
+  --surface-soft: #202337;
+  --text: #f4f5ff;
+  --text-muted: #c0c6dc;
+  --border: #3c425c;
+  --accent: #c1a7ff;
+  --accent-hover: #d6c5ff;
+  --accent-soft: #30264d;
+  --highlight: #69e1d2;
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+}
+
+/* Make width calculations predictable and prevent padding from expanding elements. */
+* {
+  box-sizing: border-box;
+}
+
+/* Enable smooth movement for navigation links while respecting reduced-motion settings below. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+/* Set the base page colors, typeface fallback stack, and remove the default margin. */
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  line-height: 1.6;
+}
+
+/* Keep images responsive and remove the small inline-image gap. */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Make form controls inherit the page font for visual consistency. */
+button,
+input,
+select {
+  font: inherit;
+}
+
+/* Keep keyboard focus visible for people navigating without a mouse. */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--highlight);
+  outline-offset: 3px;
+}
+
+/* Center the main content and keep a comfortable gutter at small widths. */
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+/* Style the header as a slightly translucent surface separated by a border. */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Flexbox aligns the logo, navigation, and theme control across the header. */
+.header-inner {
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 12px;
+}
+
+/* Group the logo mark and wordmark horizontally. */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+/* Draw a compact logo badge with a visible border and rounded corners. */
+.brand-mark {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  letter-spacing: -0.04em;
+}
+
+/* Accent part of the wordmark. */
+.brand-accent {
+  color: var(--accent);
+}
+
+/* Remove default list spacing and use Flexbox for navigation links. */
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Give navigation links padding to create easy-to-click targets. */
+.nav-list a {
+  display: block;
+  padding: 8px 10px;
+  border-radius: 9px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+/* Highlight navigation links on hover without removing the focus outline. */
+.nav-list a:hover {
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+/* Style the theme button as a simple outlined control. */
+.theme-button {
+  flex-shrink: 0;
+  padding: 9px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+/* Add a clear hover state to the theme button. */
+.theme-button:hover {
+  border-color: var(--accent);
+}
+
+/* Add generous spacing to major page sections. */
+.section {
+  padding-block: 88px;
+}
+
+/* Give alternating sections a subtle surface contrast. */
+.section-muted {
+  background: var(--surface-soft);
+}
+
+/* Arrange the hero copy and illustration in two columns on wide screens. */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 60px;
+}
+
+/* Style the small uppercase label used above section headings. */
+.eyebrow {
+  margin: 0 0 14px;
+  color: var(--highlight);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+/* Keep the main heading bold and compact. */
+h1 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  line-height: 1.04;
+  letter-spacing: -0.065em;
+}
+
+/* Use the theme accent instead of a gradient so contrast stays predictable. */
+.gradient-text {
+  color: var(--accent);
+}
+
+/* Keep hero body text readable without spanning the full width. */
+.hero-description {
+  max-width: 540px;
+  margin: 24px 0 28px;
+  color: var(--text-muted);
+  font-size: 1.1rem;
+}
+
+/* Align the hero action links with a consistent gap. */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Share padding, border radius, and bold text across all button-like links. */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 46px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+/* Give primary actions a strong accent fill. */
+.button-primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+/* Keep primary-button text contrast high in dark mode too. */
+body.dark-mode .button-primary {
+  color: #171126;
+}
+
+/* Darken the primary action slightly on hover. */
+.button-primary:hover {
+  background: var(--accent-hover);
+  color: #ffffff;
+}
+
+/* Use dark text on the pale accent color in dark mode to preserve contrast. */
+body.dark-mode .button-primary:hover {
+  color: #171126;
+}
+
+/* Give secondary actions a visible outline. */
+.button-secondary {
+  border-color: var(--border);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Add a soft surface hover to secondary actions. */
+.button-secondary:hover {
+  border-color: var(--accent);
+}
+
+/* Display the genre tags as a flexible list of small pills. */
+.hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Style each genre pill with a border and soft theme background. */
+.hero-tags li {
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 750;
+}
+
+/* Frame the illustration in a large card. */
+.hero-art {
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* Let the local SVG illustration occupy the available card width. */
+.hero-art img {
+  width: 100%;
+  margin-inline: auto;
+}
+
+/* Caption the illustration and align its status dot. */
+.art-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+/* The dot is decorative and paired with text so status is not color-only. */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--highlight);
+}
+
+/* Center section headings and constrain their width. */
+.section-heading {
+  max-width: 680px;
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+/* Keep all section heading levels visually consistent. */
+h2 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+}
+
+/* Use muted text for explanatory copy beneath headings. */
+.section-heading > p:not(.eyebrow) {
+  margin: 14px 0 0;
+  color: var(--text-muted);
+}
+
+/* Lay out the search and category filter side by side. */
+.library-controls {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+
+/* Stack each form label above its input. */
+.search-wrap,
+.filter-wrap,
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Make control labels clear and moderately bold. */
+.search-wrap label,
+.filter-wrap label,
+.form-field label {
+  color: var(--text);
+  font-size: 0.88rem;
+  font-weight: 800;
+}
+
+/* Style text fields and select menus with comfortable touch targets. */
+input,
+select {
+  width: 100%;
+  min-height: 48px;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Make placeholder text visible while still distinguishable from entered text. */
+input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+/* Keep the result count visible above the cards. */
+.results-count {
+  margin: 12px 0 18px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+/* Use a responsive grid for game cards. */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+/* Give each game card its own surface, border, and padding. */
+.game-card {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+/* Lift cards slightly to indicate that they are interactive-looking items. */
+.game-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+/* Use a large square icon area rather than relying on external image files. */
+.game-icon {
+  display: grid;
+  min-height: 112px;
+  place-items: center;
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+/* Set the icon backgrounds using theme-aware colors and maintain readable icons. */
+.icon-purple { background: #e9e1ff; color: #3e168f; }
+.icon-blue { background: #dcecff; color: #143e82; }
+.icon-pink { background: #ffe1ed; color: #8a1747; }
+.icon-orange { background: #ffead6; color: #783800; }
+.icon-green { background: #d9f7e8; color: #075d3b; }
+
+/* Add padding around the descriptive text in each card. */
+.game-info {
+  padding: 16px;
+}
+
+/* Show genre as a compact uppercase label. */
+.game-genre {
+  margin: 0 0 5px;
+  color: var(--highlight);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Make card titles compact and easy to scan. */
+.game-info h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+/* Use muted text for the short game descriptions. */
+.game-info p:last-child {
+  margin: 9px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Flexbox lets favorite cards share a row and wrap when space is limited. */
+.favorites-row {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  margin-bottom: 38px;
+}
+
+/* Give each recommendation card equal space and a visible boundary. */
+.favorite-card {
+  flex: 1 1 0;
+  padding: 24px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* Highlight the small card number and category label. */
+.favorite-number {
+  color: var(--highlight);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+/* Style recommendation headings. */
+.favorite-card h3 {
+  margin: 16px 0 8px;
+  font-size: 1.2rem;
+}
+
+/* Keep recommendation copy readable. */
+.favorite-card p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* Allow the table to scroll horizontally on narrow screens without breaking the page. */
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* Make the comparison table fill the container and collapse adjacent borders. */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Keep the caption visible above the table data. */
+caption {
+  padding: 18px;
+  color: var(--text);
+  font-size: 1.05rem;
+  font-weight: 900;
+  text-align: left;
+}
+
+/* Add padding and separators to every table cell. */
+th,
+td {
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+}
+
+/* Give column headings a soft background and strong text. */
+thead {
+  background: var(--surface-soft);
+}
+
+/* Keep row headings aligned with the rest of the row. */
+tbody th {
+  font-weight: 800;
+}
+
+/* Arrange form introduction and form in two columns on wider screens. */
+.form-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  align-items: start;
+  gap: 56px;
+}
+
+/* Align the form introduction to the left in this two-column layout. */
+.form-intro {
+  margin: 0;
+  text-align: left;
+}
+
+/* Put visible spacing between form fields and surround the form with a card. */
+.suggestion-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+/* Reserve a small area for validation messages so they stand out. */
+.form-message {
+  margin: 0;
+  color: #b42318;
+  font-weight: 800;
+}
+
+/* Keep form success summaries visible and distinct from errors. */
+.form-summary {
+  padding: 14px;
+  border: 1px solid var(--highlight);
+  border-radius: 10px;
+  background: var(--surface-soft);
+  color: var(--text);
+}
+
+/* Let the submit button stretch across the form width. */
+.submit-button {
+  width: 100%;
+}
+
+/* Explain that the sample form does not send data to a server. */
+.small-note {
+  margin-top: 22px !important;
+  font-size: 0.88rem;
+}
+
+/* Separate the footer from the content above. */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+}
+
+/* Flexbox spaces the footer brand, note, and back-to-top link. */
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 26px;
+}
+
+/* Keep the footer message subtle but readable. */
+.footer-inner p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+/* Style the back-to-top link as a simple text link. */
+.back-top {
+  color: var(--accent);
+  font-size: 0.88rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+/* Underline the back-to-top link on hover. */
+.back-top:hover {
+  text-decoration: underline;
+}
+
+/* Collapse the layout progressively as the viewport gets smaller. */
+@media (max-width: 950px) {
+  .header-inner {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .hero-grid {
+    gap: 32px;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nav-list {
+    justify-content: center;
+  }
+}
+
+/* Mobile layout: keep the website usable at the required 400px window width. */
+@media (max-width: 620px) {
+  .container {
+    width: min(100% - 28px, 1120px);
+  }
+
+  .section {
+    padding-block: 58px;
+  }
+
+  .header-inner {
+    gap: 12px;
+  }
+
+  .nav-list {
+    gap: 2px;
+  }
+
+  .nav-list a {
+    padding: 7px 8px;
+    font-size: 0.82rem;
+  }
+
+  .hero-grid,
+  .form-layout,
+  .library-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-grid {
+    gap: 34px;
+  }
+
+  .hero-art {
+    padding: 14px;
+  }
+
+  .favorites-row {
+    flex-direction: column;
+  }
+
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .suggestion-form {
+    padding: 20px;
+  }
+}
+
+/* Respect users who prefer less motion in their operating-system settings. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

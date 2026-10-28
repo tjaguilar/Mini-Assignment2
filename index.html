@@ -1,0 +1,204 @@
+<!doctype html>
+<!-- This page is the main HTML document for the gaming website. -->
+<html lang="en">
+<head>
+  <!-- Set the character encoding so symbols and punctuation display correctly. -->
+  <meta charset="utf-8">
+  <!-- Make the layout scale correctly on phones and other narrow screens. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Describe the page in browser tabs and search previews. -->
+  <meta name="description" content="A gaming hub for discovering games, comparing genres, and sharing recommendations.">
+  <!-- Set the text shown in the browser tab. -->
+  <title>Pixel Quest | Gaming Hub</title>
+  <!-- Load the external stylesheet; styles are not written inline. -->
+  <link rel="stylesheet" href="styles.css">
+  <!-- Load the JavaScript file after HTML parsing; write the required JS yourself for this assignment. -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- The header contains the site identity and primary navigation. -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <!-- The logo is text so it remains readable and accessible. -->
+      <a class="brand" href="#home" aria-label="Pixel Quest home">
+        <span class="brand-mark" aria-hidden="true">PQ</span>
+        <span>PIXEL<span class="brand-accent">QUEST</span></span>
+      </a>
+
+      <!-- Navigation links jump to the main sections of this page. -->
+      <nav aria-label="Main navigation">
+        <ul class="nav-list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#library">Game Library</a></li>
+          <li><a href="#favorites">Favorites</a></li>
+          <li><a href="#suggest">Suggest a Game</a></li>
+        </ul>
+      </nav>
+
+      <!-- JavaScript should toggle the theme class and update this button's text. -->
+      <button class="theme-button" id="theme-toggle" type="button">Switch to light mode</button>
+    </div>
+  </header>
+
+  <!-- Main contains the unique primary content of the page. -->
+  <main>
+    <!-- The home section introduces the website and contains the single h1. -->
+    <section class="hero section" id="home" aria-labelledby="page-title">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">YOUR NEXT ADVENTURE STARTS HERE</p>
+          <h1 id="page-title">Find your next <span class="gradient-text">favorite game.</span></h1>
+          <p class="hero-description">Explore new worlds, revisit all-time classics, and find your next game-night obsession in one place.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#library">Explore games <span aria-hidden="true">↘</span></a>
+            <a class="button button-secondary" href="#favorites">See favorites</a>
+          </div>
+          <!-- These small tags summarize the kinds of games featured on the site. -->
+          <ul class="hero-tags" aria-label="Featured game genres">
+            <li>Action</li><li>Adventure</li><li>Indie</li><li>Co-op</li>
+          </ul>
+        </div>
+
+        <!-- This local SVG illustration counts as the page image; its alt text explains its purpose. -->
+        <div class="hero-art">
+          <img src="controller.svg" alt="Stylized game controller surrounded by glowing pixel shapes">
+          <div class="art-caption"><span class="status-dot" aria-hidden="true"></span> PLAYER ONE, READY?</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- The library section is where the JavaScript-rendered filterable list belongs. -->
+    <section class="section section-muted" id="library" aria-labelledby="library-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">THE GAME VAULT</p>
+          <h2 id="library-title">Explore the library</h2>
+          <p>Search the collection or narrow it down by genre.</p>
+        </div>
+
+        <!-- Search and category controls should be connected to your own JavaScript implementation. -->
+        <div class="library-controls">
+          <div class="search-wrap">
+            <label for="game-search">Search games</label>
+            <input id="game-search" type="search" placeholder="Try “adventure” or “Minecraft”">
+          </div>
+          <div class="filter-wrap">
+            <label for="genre-filter">Filter by genre</label>
+            <select id="genre-filter">
+              <option value="">All genres</option>
+              <option>Action</option><option>Adventure</option><option>RPG</option><option>Sandbox</option><option>Puzzle</option><option>Strategy</option><option>Simulation</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- JavaScript should update this count whenever the search or filter changes. -->
+        <p class="results-count" id="results-count" aria-live="polite">Showing 8 of 8 games</p>
+
+        <!-- JavaScript should create each game card with createElement and append it here. -->
+        <div class="game-grid" id="game-list" aria-live="polite">
+          <!-- These starter cards make the page useful before you implement JavaScript. -->
+          <article class="game-card"><div class="game-icon icon-purple" aria-hidden="true">✦</div><div class="game-info"><p class="game-genre">Sandbox</p><h3>Minecraft</h3><p>Build, explore, and create your own world block by block.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-blue" aria-hidden="true">⚔</div><div class="game-info"><p class="game-genre">Action</p><h3>Hades</h3><p>Fight your way out of the Underworld in a fast-paced roguelike.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-pink" aria-hidden="true">☄</div><div class="game-info"><p class="game-genre">Adventure</p><h3>Stardew Valley</h3><p>Grow a farm, make friends, and settle into country life.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-orange" aria-hidden="true">★</div><div class="game-info"><p class="game-genre">Platformer</p><h3>Celeste</h3><p>Climb a mountain in a challenging story-driven platformer.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-green" aria-hidden="true">♜</div><div class="game-info"><p class="game-genre">RPG</p><h3>The Legend of Zelda: Breath of the Wild</h3><p>Explore a huge kingdom filled with secrets and discoveries.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-blue" aria-hidden="true">◎</div><div class="game-info"><p class="game-genre">Puzzle</p><h3>Portal 2</h3><p>Solve clever physics puzzles with a portal gun.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-purple" aria-hidden="true">⬡</div><div class="game-info"><p class="game-genre">Strategy</p><h3>Into the Breach</h3><p>Plan every move to defend cities from giant creatures.</p></div></article>
+          <article class="game-card"><div class="game-icon icon-orange" aria-hidden="true">☀</div><div class="game-info"><p class="game-genre">Simulation</p><h3>The Sims 4</h3><p>Create characters, design homes, and tell your own stories.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- The favorites section presents recommendations and includes the comparison table. -->
+    <section class="section" id="favorites" aria-labelledby="favorites-title">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">PLAYER PICKS</p>
+          <h2 id="favorites-title">Favorites worth a try</h2>
+          <p>A few quick picks for different moods and play styles.</p>
+        </div>
+
+        <!-- Flexbox arranges these recommendation cards in a responsive row. -->
+        <div class="favorites-row">
+          <article class="favorite-card">
+            <span class="favorite-number">01 / EXPLORE</span>
+            <h3>For curious explorers</h3>
+            <p>Choose an open world when you want freedom, secrets, and a little bit of wonder.</p>
+          </article>
+          <article class="favorite-card">
+            <span class="favorite-number">02 / COMPETE</span>
+            <h3>For a challenge</h3>
+            <p>Try a precision platformer or tactical game when you want to sharpen your skills.</p>
+          </article>
+          <article class="favorite-card">
+            <span class="favorite-number">03 / UNWIND</span>
+            <h3>For a cozy night</h3>
+            <p>Farming and life-simulation games are great when you want to relax at your own pace.</p>
+          </article>
+        </div>
+
+        <!-- This accessible table compares a few games by genre and play style. -->
+        <div class="table-wrap">
+          <table>
+            <caption>Quick game comparison</caption>
+            <thead>
+              <tr><th scope="col">Game</th><th scope="col">Genre</th><th scope="col">Best for</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Minecraft</th><td>Sandbox</td><td>Creativity and co-op</td></tr>
+              <tr><th scope="row">Hades</th><td>Action / RPG</td><td>Fast runs and challenge</td></tr>
+              <tr><th scope="row">Stardew Valley</th><td>Simulation</td><td>Relaxing and farming</td></tr>
+              <tr><th scope="row">Portal 2</th><td>Puzzle</td><td>Problem-solving</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- The suggestion section contains a labeled form for visitors to fill in. -->
+    <section class="section section-muted" id="suggest" aria-labelledby="suggest-title">
+      <div class="container form-layout">
+        <div class="section-heading form-intro">
+          <p class="eyebrow">YOUR TURN</p>
+          <h2 id="suggest-title">Suggest a game</h2>
+          <p>Have a game everyone should try? Add it to the community suggestion list.</p>
+          <p class="small-note">This demo form does not send information to a server; it only displays a local summary after you implement the JavaScript handler.</p>
+        </div>
+
+        <!-- The form's JavaScript handler should prevent default submission, validate fields, and show a summary. -->
+        <form id="suggestion-form" class="suggestion-form" novalidate>
+          <div class="form-field">
+            <label for="visitor-name">Your display name</label>
+            <input id="visitor-name" name="visitorName" type="text" autocomplete="nickname" required minlength="2" maxlength="40">
+          </div>
+          <div class="form-field">
+            <label for="suggested-game">Game title</label>
+            <input id="suggested-game" name="gameTitle" type="text" required minlength="2" maxlength="80">
+          </div>
+          <div class="form-field">
+            <label for="suggested-genre">Genre</label>
+            <select id="suggested-genre" name="gameGenre" required>
+              <option value="">Choose a genre</option>
+              <option>Action</option><option>Adventure</option><option>RPG</option><option>Sandbox</option><option>Puzzle</option><option>Strategy</option><option>Simulation</option><option>Other</option>
+            </select>
+          </div>
+          <!-- JavaScript should put validation feedback in this live region. -->
+          <p class="form-message" id="form-error" role="alert"></p>
+          <!-- JavaScript should show the successful submission summary in this region. -->
+          <div class="form-summary" id="form-summary" aria-live="polite" hidden></div>
+          <button class="button button-primary submit-button" type="submit">Send suggestion <span aria-hidden="true">→</span></button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- The footer provides closing information and repeats the site's main idea. -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <a class="brand footer-brand" href="#home"><span class="brand-mark" aria-hidden="true">PQ</span><span>PIXEL<span class="brand-accent">QUEST</span></span></a>
+      <p>Made for players, by a player. Keep exploring.</p>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
